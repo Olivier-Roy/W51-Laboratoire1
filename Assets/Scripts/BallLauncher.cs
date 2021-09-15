@@ -11,7 +11,7 @@ public class BallLauncher : MonoBehaviour
     private bool holdLaunch = false;
     private float holdLaunchTimer = 0f;
     private const float holdLaunchLimit = 2f;
-    private Rigidbody ballRigidbody;
+    private Collider triggerCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -26,33 +26,19 @@ public class BallLauncher : MonoBehaviour
         ManageLaunchButtonUp();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider collider)
     {
-        if (other.gameObject.tag == LAUNCH_TRIGGER_OBJECT_TAG)
+        if (collider.gameObject.tag == LAUNCH_TRIGGER_OBJECT_TAG)
         {
-            Debug.Log("TriggerEnter");
-            ballRigidbody = other.gameObject.GetComponent<Rigidbody>();
+            triggerCollider = collider;
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider collider)
     {
-        if (other.gameObject.tag == LAUNCH_TRIGGER_OBJECT_TAG)
+        if (collider.gameObject.tag == LAUNCH_TRIGGER_OBJECT_TAG)
         {
-            Debug.Log("TriggerExit");
-            ballRigidbody = null;
-        }
-    }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if (hit.gameObject.tag == LAUNCH_TRIGGER_OBJECT_TAG)
-        {
-            Rigidbody rb = hit.gameObject.GetComponent<Rigidbody>();
-
-            if (rb == null) return;
-
-            rb.AddForce(CreateNewForce(hit.transform.position, 0.5f), ForceMode.Impulse);
+            triggerCollider = null;
         }
     }
 
@@ -69,13 +55,13 @@ public class BallLauncher : MonoBehaviour
     {
         if (Input.GetButtonUp(LAUNCH_BUTTON_NAME))
         {
-            if (ballRigidbody != null)
+            if (triggerCollider != null)
             {
-                Vector3 newForce = CreateNewForce(ballRigidbody.transform.position, 30f);
+                Vector3 newForce = CreateNewForce(triggerCollider.transform.position, 500f);
 
-                newForce.y = Random.Range(0f, holdLaunchTimer * 9f);
+                newForce.z += Random.Range(0f, holdLaunchTimer * 9f);
 
-                ballRigidbody.AddForce(newForce, ForceMode.Impulse);
+                gameObject.GetComponent<Rigidbody>().AddForce(newForce, ForceMode.Impulse);
             }
 
             holdLaunchTimer = 0f;
