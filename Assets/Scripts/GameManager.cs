@@ -7,8 +7,10 @@ public class GameManager : MonoBehaviour
 {
     private int score = 0;
     private int multiplier = 1;
-    private int remainingBalls = 3;
+    private int remainingBalls = 1;
+    private bool gameOver = false;
 
+    [SerializeField] GameObject gameOverMessage;
     [SerializeField] Text[] uiTexts = new Text[3];
 
     private void Start()
@@ -40,6 +42,16 @@ public class GameManager : MonoBehaviour
             remainingBalls--;
             SetRemainingBallsText();
         }
+        else
+        {
+            gameOver = true;
+            gameOverMessage.SetActive(true);
+        }
+    }
+
+    public bool GameOver()
+    {
+        return gameOver;
     }
 
     private void SetScoreText()

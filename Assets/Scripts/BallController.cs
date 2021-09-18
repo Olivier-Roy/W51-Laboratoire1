@@ -19,6 +19,8 @@ public class BallController : MonoBehaviour
     private const float HOLD_LAUNCH_LIMIT = 2f;
     private const float RESPAWN_DELAY = 2f;
     private string triggerTag;
+    [SerializeField] GameManager gameManager;
+    private bool respawnManaged = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,9 +31,12 @@ public class BallController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ManageLaunchButtonDown();
-        ManageLaunchButtonUp();
-        ManageRespawn();
+        if (!gameManager.GameOver())
+        {
+            ManageLaunchButtonDown();
+            ManageLaunchButtonUp();
+            ManageRespawn();
+        }
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -47,7 +52,10 @@ public class BallController : MonoBehaviour
         if (colliderTag == LAUNCH_TRIGGER_TAG || colliderTag == LOST_TRIGGER_TAG)
             triggerTag = null;
         if (colliderTag == LOST_TRIGGER_TAG)
+        {
             respawnTimer = 0f;
+            respawnManaged = false;
+        }
     }
 
     private void ManageLaunchButtonDown()
@@ -79,8 +87,12 @@ public class BallController : MonoBehaviour
         if (triggerTag == LOST_TRIGGER_TAG)
         {
             respawnTimer += Time.deltaTime;
-            if (respawnTimer >= RESPAWN_DELAY)
+            if (respawnTimer >= RESPAWN_DELAY && !respawnManaged)
+            {
                 gameObject.transform.position = new Vector3(RESPAWN_POSITION_X, RESPAWN_POSITION_Y, RESPAWN_POSITION_Z);
+                gameManager.RemoveRemainingBall();
+                respawnManaged = true;
+            }
         }
     }
 }
