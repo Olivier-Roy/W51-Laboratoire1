@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6274461926245080100}
   - component: {fileID: 2098303748829314210}
   - component: {fileID: 1970319454503427366}
+  - component: {fileID: 2362897668576817991}
   m_Layer: 0
   m_Name: bumper_big
   m_TagString: Untagged
@@ -44,7 +45,6 @@ SkinnedMeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -119,3 +119,18 @@ CapsuleCollider:
   m_Height: 1.9888645
   m_Direction: 1
   m_Center: {x: 0, y: 0.9944323, z: 0}
+--- !u!114 &2362897668576817991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287965677972928871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 932ea103cb772dc42955652e39d3bd15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceMultiplier: 60
+  pointsToAdd: 100
+  gameManager: {fileID: 0}

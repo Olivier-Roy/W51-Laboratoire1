@@ -4,30 +4,37 @@ using UnityEngine;
 
 public class demoTargetBlink : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     public MeshFilter target_mesh;
     public Mesh[] target_mesh_states;
     public float blinkspeed = 0.5f;
     public float max_cycle = 4;
-    
-    void Start()
+    private int bid = 0;
+
+    void OnEnable()
     {
-        StartCoroutine(blinkTarget());
+        StartCoroutine("BlinkTarget");
     }
 
-    
-    int bid = 0;
-    IEnumerator blinkTarget(){
-          while(true) 
-         { 
+    private void OnDisable()
+    {
+        StopCoroutine("BlinkTarget");
+        bid = 0;
+        SetHighlighted();
+    }
+
+    private void SetHighlighted()
+    {
+        target_mesh.mesh = target_mesh_states[bid];
+    }
+
+    IEnumerator BlinkTarget()
+    {
+        while (true) 
+        { 
             yield return new WaitForSeconds(blinkspeed);
-            target_mesh.mesh = target_mesh_states[bid];
+            SetHighlighted();
             bid += 1;
-            if(bid >= max_cycle)
-            {
-                bid = 0;
-            }
+            if (bid >= max_cycle) bid = 0;
         }
     }
 }

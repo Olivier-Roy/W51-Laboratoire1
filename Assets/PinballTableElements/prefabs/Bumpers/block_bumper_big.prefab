@@ -53,7 +53,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -113,6 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8062663832920891542}
   - component: {fileID: 6991131906943353498}
+  - component: {fileID: 980583153892316010}
   m_Layer: 0
   m_Name: bumper
   m_TagString: Untagged
@@ -145,7 +145,6 @@ SkinnedMeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -187,3 +186,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.71271545, y: 0.86956286, z: 0.23504126}
     m_Extent: {x: 1.0879056, y: 0.54077935, z: 2.6951184}
   m_DirtyAABB: 0
+--- !u!114 &980583153892316010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5216630822811026309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 932ea103cb772dc42955652e39d3bd15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceMultiplier: 15
+  pointsToAdd: 50
+  gameManager: {fileID: 0}
