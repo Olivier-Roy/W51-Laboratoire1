@@ -5,10 +5,12 @@ using UnityEngine;
 public class BumperController : MonoBehaviour
 {
     private const string BALL_OBJECT_TAG = "Ball";
+    private const int DEFAULT_FORCE_MULTIPLIER = 1;
+    private const int DEFAULT_POINTS_TO_ADD = 0;
 
-    [SerializeField] int forceMultiplier = 1;
-    [SerializeField] int pointsToAdd = 0;
     [SerializeField] GameManager gameManager;
+    [SerializeField] int forceMultiplier = DEFAULT_FORCE_MULTIPLIER;
+    [SerializeField] int pointsToAdd = DEFAULT_POINTS_TO_ADD;
 
     private void OnCollisionEnter(Collision collision)
     {

@@ -5,10 +5,12 @@ using UnityEngine;
 public class LightController : MonoBehaviour
 {
     private const string BALL_OBJECT_TAG = "Ball";
+    private const int DEFAULT_MULTIPLIER = 1;
+    private const int DEFAULT_POINTS_TO_ADD = 0;
 
-    [SerializeField] int multiplier = 1;
     [SerializeField] GameManager gameManager;
-    [SerializeField] int pointsToAdd = 0;
+    [SerializeField] int multiplier = DEFAULT_MULTIPLIER;
+    [SerializeField] int pointsToAdd = DEFAULT_POINTS_TO_ADD;
 
     public void SetBlinking(bool enabled)
     {

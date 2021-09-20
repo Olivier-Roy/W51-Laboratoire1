@@ -5,21 +5,23 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private const int POINTS_BEFORE_NEW_BALL = 100000;
+    private const int INITIAL_SCORE = 0;
     private const int DEFAULT_MULTIPLIER = 1;
     private const int MAXIMUM_MULTIPLIER = 5;
-    
-    private int score = 0;
-    private int multiplier = DEFAULT_MULTIPLIER;
-    private int remainingBalls = 3;
-    private bool gameOver = false;
-    private int pointsBeforeNewBall = POINTS_BEFORE_NEW_BALL;
+    private const int INITIAL_NUMBER_OF_BALLS = 3;
+    private const int POINTS_BEFORE_NEW_BALL = 100000;
 
-    [SerializeField] GameObject gameOverMessage;
+    private int score = INITIAL_SCORE;
+    private int multiplier = DEFAULT_MULTIPLIER;
+    private int remainingBalls = INITIAL_NUMBER_OF_BALLS;
+    private int pointsBeforeNewBall = POINTS_BEFORE_NEW_BALL;
+    private bool gameOver = false;
+
     [SerializeField] Text[] uiTexts = new Text[3];
     [SerializeField] GameObject[] lights = new GameObject[19];
     [SerializeField] GameObject[] targets = new GameObject[5];
     [SerializeField] GameObject jackpot;
+    [SerializeField] GameObject gameOverMessage;
 
     private void Start()
     {

@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class demoLetterCycle : MonoBehaviour
 {
+    private const string COROUTINE_NAME = "CycleText";
+
     public SpriteRenderer[] sprite_mesh;
     public Sprite[] text_sprite;
     public Sprite[] text_sprite_highlight;
     public float blinkspeed = 0.5f;
+
     private int bid = 0;
 
     void OnEnable()
     {
-        StartCoroutine("CycleText");
+        StartCoroutine(COROUTINE_NAME);
     }
 
     private void OnDisable()
     {
-        StopCoroutine("CycleText");
+        StopCoroutine(COROUTINE_NAME);
         bid = 0;
         ResetHighlight();
     }
@@ -35,7 +38,7 @@ public class demoLetterCycle : MonoBehaviour
             yield return new WaitForSeconds(blinkspeed);
             ResetHighlight();
             sprite_mesh[bid].sprite = text_sprite_highlight[bid];
-            bid += 1;
+            bid++;
             if (bid >= text_sprite.Length) bid = 0;
         }
     }

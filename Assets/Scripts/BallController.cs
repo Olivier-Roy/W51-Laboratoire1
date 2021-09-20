@@ -7,22 +7,21 @@ public class BallController : MonoBehaviour
     private const string LAUNCH_TRIGGER_TAG = "LauncherTrigger";
     private const string LOST_TRIGGER_TAG = "LostTrigger";
     private const string LAUNCH_BUTTON_NAME = "Jump";
-    private const float LAUNCH_FORCE_MULTIPLIER = 200f;
 
+    private const float LAUNCH_FORCE_MULTIPLIER = 200f;
+    private const float HOLD_LAUNCH_LIMIT = 2f;
+    private const float RESPAWN_DELAY = 2f;
     private const float RESPAWN_POSITION_X = 17f;
     private const float RESPAWN_POSITION_Y = 0.5f;
     private const float RESPAWN_POSITION_Z = 13f;
 
+    [SerializeField] GameManager gameManager;
+    private string triggerTag;
     private bool holdLaunch = false;
     private float holdLaunchTimer = 0f;
-    private float respawnTimer = 0f;
-    private const float HOLD_LAUNCH_LIMIT = 2f;
-    private const float RESPAWN_DELAY = 2f;
-    private string triggerTag;
-    [SerializeField] GameManager gameManager;
     private bool respawnManaged = false;
+    private float respawnTimer = 0f;
 
-    // Update is called once per frame
     void Update()
     {
         if (!gameManager.GameOver())
